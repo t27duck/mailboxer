@@ -1,4 +1,9 @@
-require 'carrierwave'
+begin
+  require 'carrierwave'
+rescue LoadError
+  Mailboxer.attachment_enabled = false
+end
+
 begin
   require 'sunspot_rails'
 rescue LoadError

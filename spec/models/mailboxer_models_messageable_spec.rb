@@ -307,10 +307,12 @@ describe "Mailboxer::Models::Messageable through User" do
     expect(@conversation.receipts_for(@entity1).first.trashed).to eq true
   end
 
-  it "should be able to read attachment" do
-    @receipt = @entity1.send_message(@entity2, "Body", "Subject", nil, File.open('spec/testfile.txt'))
-    @conversation = @receipt.conversation
-    expect(@conversation.messages.first.attachment_identifier).to eq 'testfile.txt'
+  it "should be able to read attachment if enabled" do
+    #if Mailboxer.attachment_enabled
+      @receipt = @entity1.send_message(@entity2, "Body", "Subject", nil, File.open('spec/testfile.txt'))
+      @conversation = @receipt.conversation
+      expect(@conversation.messages.first.attachment_identifier).to eq 'testfile.txt'
+    #end
   end
 
   it "should be the same message time as passed" do

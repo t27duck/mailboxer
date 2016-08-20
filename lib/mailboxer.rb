@@ -22,6 +22,8 @@ module Mailboxer
   mattr_accessor :notification_mailer
   mattr_accessor :message_mailer
   mattr_accessor :custom_deliver_proc
+  @@attachment_enabled = true
+  mattr_accessor :attachment_enabled
 
   class << self
     def setup
